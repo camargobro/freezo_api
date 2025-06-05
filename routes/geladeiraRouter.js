@@ -4,7 +4,7 @@ const express = require('express');
 //     postItem, postItemValidade, postItemMarca, postItemTipo, patchItem, patchItemValidade, 
 //     patchItemMarca, patchItemTipo, deleteItem,deleteItemValidade, deleteItemMarca, deleteItemTipo } =  require('../controller/geladeiraController');
 
-const { getItensController } = require('../controller/geladeiraController'); 
+const { getItensController, postItemController } = require('../controller/geladeiraController'); 
 
 const router = express.Router();
 
@@ -24,7 +24,7 @@ router.get('/', getItensController);
 
 // router.get('/tipo/:idTipo', getItemTipoByIdController);
 
-// router.post('/', postItemController);
+router.post('/', postItemController);
 
 // router.post('/validade', postItemValidadeController);
 

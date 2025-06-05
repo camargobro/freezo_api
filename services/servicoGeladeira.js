@@ -1,6 +1,14 @@
-function getItens(){
+const { initializeApp } = require("firebase/app");
+const { getFirestore, doc, setDoc, collection } = require("firebase/firestore");
+const { firebaseConfig } = require('../services/firebaseCredenciais');
 
-}
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+
+// export function getItens(){
+
+// }
 // function getItemById(){
 
 // }
@@ -22,9 +30,10 @@ function getItens(){
 // function getItemTipoById(){
 
 // }
-// function postItem(){
-
-// }
+ async function postItens(item){
+        const docRef = doc(collection(db, "itens"));
+        await setDoc(docRef, item);
+}
 // function postItemValidade(){
 
 // }
@@ -58,8 +67,10 @@ function getItens(){
 // function deleteItemTipo(){
 
 // }
+
 module.exports = {
-    getItens,
+    postItens,
+    // getItens,
     // getItemById,
     // getItensValidade,
     // getItemValidadeById,
@@ -67,7 +78,6 @@ module.exports = {
     // getItemMarcaById,
     // getItensTipo,
     // getItemTipoById,
-    // postItem,
     // postItemValidade,
     // postItemMarca,
     // postItemTipo,

@@ -2,32 +2,12 @@
 //     getItensMarca, getItemMarcaById, getItensTipo, getItemTipoById,
 //     postItem, postItemValidade, postItemMarca, postItemTipo, patchItem, patchItemValidade,
 //     patchItemMarca, patchItemTipo, deleteItem, deleteItemValidade, deleteItemMarca, deleteItemTipo } = require('../services/servicoGeladeira');
-const { getItens } = require('../services/servicoGeladeira');
+const { postItens } = require('../services/servicoGeladeira');
 
-const itens = [
-    { 
-        id: 1, 
-        nome: 'Leite', 
-        validade: '2023-12-01', 
-        marca: 'Marca A', 
-        tipo: 'Líquido' 
-    },
-    { 
-        id: 2, 
-        nome: 'Queijo', 
-        validade: '2024-01-15', 
-        marca: 'Marca B', 
-        tipo: 'Lácteo' 
-    }
-];
+
 
 function getItensController(req, res) {
-    try{
-        res.json(itens);
-        res.status(200);
-    } catch (error) {
-        res.status(500).send({ message: 'Erro ao buscar itens' });
-    }
+   
 }
 
 
@@ -51,8 +31,15 @@ function getItensController(req, res) {
 // function getItemTipoByIdController(){
 
 // }
-// function postItemController(){
-
+function postItemController(req, res){
+ try{
+        let body = req.body;
+        postItens(body);
+        res.send(201)
+    } catch (error) {
+        res.status(500).send('Erro ao criar um item');
+    }
+}
 // }
 // function postItemValidadeController(){
 
@@ -96,7 +83,7 @@ module.exports = {
     // getItemMarcaByIdController,
     // getItensTipoController,
     // getItemTipoByIdController,
-    // postItemController,
+    postItemController,
     // postItemValidadeController,
     // postItemMarcaController,
     // postItemTipoController,
