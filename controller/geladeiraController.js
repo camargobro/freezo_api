@@ -1,87 +1,111 @@
-const { getItens, getItemById, getItensValidade, getItemValidadeById,
-    getItensMarca, getItemMarcaById, getItensTipo, getItemTipoById,
-    postItem, postItemValidade, postItemMarca, postItemTipo, patchItem, patchItemValidade,
-    patchItemMarca, patchItemTipo, deleteItem, deleteItemValidade, deleteItemMarca, deleteItemTipo } = require('../services/servicoGeladeira');
+// const { getItens, getItemById, getItensValidade, getItemValidadeById,
+//     getItensMarca, getItemMarcaById, getItensTipo, getItemTipoById,
+//     postItem, postItemValidade, postItemMarca, postItemTipo, patchItem, patchItemValidade,
+//     patchItemMarca, patchItemTipo, deleteItem, deleteItemValidade, deleteItemMarca, deleteItemTipo } = require('../services/servicoGeladeira');
+const { getItens } = require('../services/servicoGeladeira');
 
+const itens = [
+    { 
+        id: 1, 
+        nome: 'Leite', 
+        validade: '2023-12-01', 
+        marca: 'Marca A', 
+        tipo: 'Líquido' 
+    },
+    { 
+        id: 2, 
+        nome: 'Queijo', 
+        validade: '2024-01-15', 
+        marca: 'Marca B', 
+        tipo: 'Lácteo' 
+    }
+];
 
-function getItensController(){
-
+function getItensController(req, res) {
+    try{
+        res.json(itens);
+        res.status(200);
+    } catch (error) {
+        res.status(500).send({ message: 'Erro ao buscar itens' });
+    }
 }
-function getItemByIdController(){
-}
-function getItensValidadeController(){
 
-}
-function getItemValidadeByIdController(){
 
-}
-function getItensMarcaController(){
+// function getItemByIdController(){
+// }
+// function getItensValidadeController(){
 
-}
-function getItemMarcaByIdController(){
+// }
+// function getItemValidadeByIdController(){
 
-}
-function getItensTipoController(){
+// }
+// function getItensMarcaController(){
 
-}
-function getItemTipoByIdController(){
+// }
+// function getItemMarcaByIdController(){
 
-}
-function postItemController(){
+// }
+// function getItensTipoController(){
 
-}
-function postItemValidadeController(){
+// }
+// function getItemTipoByIdController(){
 
-}
-function postItemMarcaController(){
+// }
+// function postItemController(){
 
-}
-function postItemTipoController(){
+// }
+// function postItemValidadeController(){
 
-}
-function patchItemController(){
+// }
+// function postItemMarcaController(){
 
-}
-function patchItemValidadeController(){
+// }
+// function postItemTipoController(){
 
-}
-function patchItemMarcaController(){
+// }
+// function patchItemController(){
 
-}
-function patchItemTipoController(){
+// }
+// function patchItemValidadeController(){
 
-}
-function deleteItemController(){
+// }
+// function patchItemMarcaController(){
 
-}
-function deleteItemValidadeController(){
+// }
+// function patchItemTipoController(){
 
-}
-function deleteItemMarcaController(){
+// }
+// function deleteItemController(){
 
-}
-function deleteItemTipoController(){
+// }
+// function deleteItemValidadeController(){
 
-}
+// }
+// function deleteItemMarcaController(){
+
+// }
+// function deleteItemTipoController(){
+
+// }
 module.exports = {
     getItensController,
-    getItemByIdController,
-    getItensValidadeController,
-    getItemValidadeByIdController,
-    getItensMarcaController,
-    getItemMarcaByIdController,
-    getItensTipoController,
-    getItemTipoByIdController,
-    postItemController,
-    postItemValidadeController,
-    postItemMarcaController,
-    postItemTipoController,
-    patchItemController,
-    patchItemValidadeController,
-    patchItemMarcaController,
-    patchItemTipoController,
-    deleteItemController,
-    deleteItemValidadeController,
-    deleteItemMarcaController,
-    deleteItemTipoController
+    // getItemByIdController,
+    // getItensValidadeController,
+    // getItemValidadeByIdController,
+    // getItensMarcaController,
+    // getItemMarcaByIdController,
+    // getItensTipoController,
+    // getItemTipoByIdController,
+    // postItemController,
+    // postItemValidadeController,
+    // postItemMarcaController,
+    // postItemTipoController,
+    // patchItemController,
+    // patchItemValidadeController,
+    // patchItemMarcaController,
+    // patchItemTipoController,
+    // deleteItemController,
+    // deleteItemValidadeController,
+    // deleteItemMarcaController,
+    // deleteItemTipoController
 };

@@ -1,49 +1,51 @@
 const express = require('express');
-const { getItens, getItemById, getItensValidade, getItemValidadeById, 
-getItensMarca, getItemMarcaById, getItensTipo, getItemTipoById, 
-postItem, postItemValidade, postItemMarca, postItemTipo, patchItem, patchItemValidade, 
-patchItemMarca, patchItemTipo, deleteItem,deleteItemValidade, deleteItemMarca, deleteItemTipo } =  require('../controller/freezerController');
+// const { getItens, getItemById, getItensValidade, getItemValidadeById, 
+// getItensMarca, getItemMarcaById, getItensTipo, getItemTipoById, 
+// postItem, postItemValidade, postItemMarca, postItemTipo, patchItem, patchItemValidade, 
+// patchItemMarca, patchItemTipo, deleteItem,deleteItemValidade, deleteItemMarca, deleteItemTipo } =  require('../controller/freezerController');
+const { getItensController } = require('../controller/freezerController');	
+
 const router = express.Router();
 
-router.get('/', getItens); 
+router.get('/', getItensController); 
 
-router.get('/:id', getItemById);
+// router.get('/:id', getItemByIdController);
 
-router.get('/validade', getItensValidade);
+// router.get('/validade', getItensValidadeController);
 
-router.get('/validade/:idValidade', getItemValidadeById);
+// router.get('/validade/:idValidade', getItemValidadeByIdController);
 
-router.get('/marca', getItensMarca);
+// router.get('/marca', getItensMarcaController);
 
-router.get('/marca/:idMarca', getItemMarcaById);
+// router.get('/marca/:idMarca', getItemMarcaByIdController);
 
-router.get('/tipo', getItensTipo);
+// router.get('/tipo', getItensTipoController);
 
-router.get('/tipo/:idTipo', getItemTipoById);
+// router.get('/tipo/:idTipo', getItemTipoByIdController);
 
-router.post('/', postItem);
+// router.post('/', postItemController);
 
-router.post('/validade', postItemValidade);
+// router.post('/validade', postItemValidadeController);
 
-router.post('/marca', postItemMarca);
+// router.post('/marca', postItemMarcaController);
 
-router.post('/tipo', postItemTipo);
+// router.post('/tipo', postItemTipoController);
 
-router.patch('/:id', patchItem);
+// router.patch('/:id', patchItemController);
 
-router.patch('/validade/:idValidade', patchItemValidade);
+// router.patch('/validade/:idValidade', patchItemValidadeController);
 
-router.patch('/marca/:idMarca', patchItemMarca);
+// router.patch('/marca/:idMarca', patchItemMarcaController);
 
-router.patch('/tipo/:idTipo', patchItemTipo);
+// router.patch('/tipo/:idTipo', patchItemTipoController);
 
-router.delete('/:id', deleteItem);
+// router.delete('/:id', deleteItemController);
 
-router.delete('/validade/:idValidade', deleteItemValidade);
+// router.delete('/validade/:idValidade', deleteItemValidadeController);
 
-router.delete('/marca/:idMarca', deleteItemMarca);
+// router.delete('/marca/:idMarca', deleteItemMarcaController);
 
-router.delete('/tipo/:idTipo', deleteItemTipo);
+// router.delete('/tipo/:idTipo', deleteItemTipoController);
 
 
 module.exports = router;

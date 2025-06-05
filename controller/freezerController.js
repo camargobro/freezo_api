@@ -1,87 +1,88 @@
-const { getItens, getItemById, getItensValidade, getItemValidadeById,
-    getItensMarca, getItemMarcaById, getItensTipo, getItemTipoById,
-    postItem, postItemValidade, postItemMarca, postItemTipo, patchItem, patchItemValidade,
-    patchItemMarca, patchItemTipo, deleteItem, deleteItemValidade, deleteItemMarca, deleteItemTipo } = require('../services/servicoFreezer');
-
+// const { getItens, getItemById, getItensValidade, getItemValidadeById,
+//     getItensMarca, getItemMarcaById, getItensTipo, getItemTipoById,
+//     postItem, postItemValidade, postItemMarca, postItemTipo, patchItem, patchItemValidade,
+//     patchItemMarca, patchItemTipo, deleteItem, deleteItemValidade, deleteItemMarca, deleteItemTipo } = require('../services/servicoFreezer');
+const { getItens } = require('../services/servicoFreezer');
 
 function getItensController(){
+};
 
-}
-function getItemByIdController(){
-}
-function getItensValidadeController(){
+// }
+// function getItemByIdController(){
+// }
+// function getItensValidadeController(){
 
-}
-function getItemValidadeByIdController(){
+// }
+// function getItemValidadeByIdController(){
 
-}
-function getItensMarcaController(){
+// }
+// function getItensMarcaController(){
 
-}
-function getItemMarcaByIdController(){
+// }
+// function getItemMarcaByIdController(){
 
-}
-function getItensTipoController(){
+// }
+// function getItensTipoController(){
 
-}
-function getItemTipoByIdController(){
+// }
+// function getItemTipoByIdController(){
 
-}
-function postItemController(){
+// }
+// function postItemController(){
 
-}
-function postItemValidadeController(){
+// }
+// function postItemValidadeController(){
 
-}
-function postItemMarcaController(){
+// }
+// function postItemMarcaController(){
 
-}
-function postItemTipoController(){
+// }
+// function postItemTipoController(){
 
-}
-function patchItemController(){
+// }
+// function patchItemController(){
 
-}
-function patchItemValidadeController(){
+// }
+// function patchItemValidadeController(){
 
-}
-function patchItemMarcaController(){
+// }
+// function patchItemMarcaController(){
 
-}
-function patchItemTipoController(){
+// }
+// function patchItemTipoController(){
 
-}
-function deleteItemController(){
+// }
+// function deleteItemController(){
 
-}
-function deleteItemValidadeController(){
+// }
+// function deleteItemValidadeController(){
 
-}
-function deleteItemMarcaController(){
+// }
+// function deleteItemMarcaController(){
 
-}
-function deleteItemTipoController(){
+// }
+// function deleteItemTipoController(){
 
-}
+// }
 module.exports = {
-    getItensController,
-    getItemByIdController,
-    getItensValidadeController,
-    getItemValidadeByIdController,
-    getItensMarcaController,
-    getItemMarcaByIdController,
-    getItensTipoController,
-    getItemTipoByIdController,
-    postItemController,
-    postItemValidadeController,
-    postItemMarcaController,
-    postItemTipoController,
-    patchItemController,
-    patchItemValidadeController,
-    patchItemMarcaController,
-    patchItemTipoController,
-    deleteItemController,
-    deleteItemValidadeController,
-    deleteItemMarcaController,
-    deleteItemTipoController
+    getItensController
+    // getItemByIdController,
+    // getItensValidadeController,
+    // getItemValidadeByIdController,
+    // getItensMarcaController,
+    // getItemMarcaByIdController,
+    // getItensTipoController,
+    // getItemTipoByIdController,
+    // postItemController,
+    // postItemValidadeController,
+    // postItemMarcaController,
+    // postItemTipoController,
+    // patchItemController,
+    // patchItemValidadeController,
+    // patchItemMarcaController,
+    // patchItemTipoController,
+    // deleteItemController,
+    // deleteItemValidadeController,
+    // deleteItemMarcaController,
+    // deleteItemTipoController
 };

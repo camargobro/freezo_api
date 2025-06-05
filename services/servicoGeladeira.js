@@ -1,82 +1,82 @@
 function getItens(){
 
 }
-function getItemById(){
+// function getItemById(){
 
-}
-function getItensValidade(){
+// }
+// function getItensValidade(){
 
-}
-function getItemValidadeById(){
+// }
+// function getItemValidadeById(){
 
-}
-function getItensMarca(){
+// }
+// function getItensMarca(){
 
-}
-function getItemMarcaById(){
+// }
+// function getItemMarcaById(){
 
-}
-function getItensTipo(){
+// }
+// function getItensTipo(){
 
-}
-function getItemTipoById(){
+// }
+// function getItemTipoById(){
 
-}
-function postItem(){
+// }
+// function postItem(){
 
-}
-function postItemValidade(){
+// }
+// function postItemValidade(){
 
-}
-function postItemMarca(){
+// }
+// function postItemMarca(){
 
-}
-function postItemTipo(){
+// }
+// function postItemTipo(){
 
-}
-function patchItem(){
+// }
+// function patchItem(){
 
-}
-function patchItemValidade(){
+// }
+// function patchItemValidade(){
 
-}
-function patchItemMarca(){
+// }
+// function patchItemMarca(){
 
-}
-function patchItemTipo(){
+// }
+// function patchItemTipo(){
 
-}
-function deleteItem(){
+// }
+// function deleteItem(){
 
-}
-function deleteItemValidade(){
+// }
+// function deleteItemValidade(){
 
-}
-function deleteItemMarca(){
+// }
+// function deleteItemMarca(){
 
-}
-function deleteItemTipo(){
+// }
+// function deleteItemTipo(){
 
-}
+// }
 module.exports = {
     getItens,
-    getItemById,
-    getItensValidade,
-    getItemValidadeById,
-    getItensMarca,
-    getItemMarcaById,
-    getItensTipo,
-    getItemTipoById,
-    postItem,
-    postItemValidade,
-    postItemMarca,
-    postItemTipo,
-    patchItem,
-    patchItemValidade,
-    patchItemMarca,
-    patchItemTipo,
-    deleteItem,
-    deleteItemValidade,
-    deleteItemMarca,
-    deleteItemTipo
+    // getItemById,
+    // getItensValidade,
+    // getItemValidadeById,
+    // getItensMarca,
+    // getItemMarcaById,
+    // getItensTipo,
+    // getItemTipoById,
+    // postItem,
+    // postItemValidade,
+    // postItemMarca,
+    // postItemTipo,
+    // patchItem,
+    // patchItemValidade,
+    // patchItemMarca,
+    // patchItemTipo,
+    // deleteItem,
+    // deleteItemValidade,
+    // deleteItemMarca,
+    // deleteItemTipo
 };
