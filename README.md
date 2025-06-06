@@ -1,8 +1,7 @@
 <h1>Projeto FreezoAPI</h1>
 
 <h2>🗞 Sobre</h2>
-<p>O objetivo do projeto é desenvolver uma API para gerenciamento de estoque de geladeiras/freezers, para que ocorra um melhor aproveitamento dos alimentos
-e suas datas de vencimentos.</p>
+<p>O objetivo do projeto é desenvolver uma API para gerenciamento de estoque de geladeiras/freezers, para que ocorra um melhor aproveitamento dos alimentos cuidando suas datas de vencimentos.</p>
 
 <h2>Tecnologias</h2>
 <div>
