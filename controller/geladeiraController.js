@@ -29,7 +29,22 @@
     try{
            let body = req.body;
             await postItens(body);
-            res.send(201)
+            //VALIDAÇÃO == ALTERAR OS CAMPOS DEPOIS
+            if (!body.nome || body.nome.trim() === '') {
+                body.nome = 'Não definido';
+            }
+            if (!body.marca || body.marca.trim() === '') {
+                body.marca = 'Não definido';
+            }
+            if (!body.tipo || body.tipo.trim() === '') {
+                body.tipo = 'Não definido';
+            }
+            if (!body.validade || body.validade.trim() === '') {
+                body.validade = 'Não definido';
+            }
+
+            postItens(body);
+            res.sendStatus(201);
         } catch (error) {
             res.status(500).send('Erro ao criar um item');
         }
