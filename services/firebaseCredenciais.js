@@ -8,6 +8,4 @@
     measurementId: "G-7QHWJK3P46"
 };
 
-module.exports = {
-    firebaseConfig
-};
+export default firebaseConfig;

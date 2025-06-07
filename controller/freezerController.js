@@ -2,9 +2,9 @@
 //     getItensMarca, getItemMarcaById, getItensTipo, getItemTipoById,
 //     postItem, postItemValidade, postItemMarca, postItemTipo, patchItem, patchItemValidade,
 //     patchItemMarca, patchItemTipo, deleteItem, deleteItemValidade, deleteItemMarca, deleteItemTipo } = require('../services/servicoFreezer');
-const { getItens } = require('../services/servicoFreezer');
+import { getItens } from '../services/servicoFreezer.js';
 
-function getItensController(){
+export function getItensController(){
 };
 
 // }
@@ -64,25 +64,3 @@ function getItensController(){
 // function deleteItemTipoController(){
 
 // }
-module.exports = {
-    getItensController
-    // getItemByIdController,
-    // getItensValidadeController,
-    // getItemValidadeByIdController,
-    // getItensMarcaController,
-    // getItemMarcaByIdController,
-    // getItensTipoController,
-    // getItemTipoByIdController,
-    // postItemController,
-    // postItemValidadeController,
-    // postItemMarcaController,
-    // postItemTipoController,
-    // patchItemController,
-    // patchItemValidadeController,
-    // patchItemMarcaController,
-    // patchItemTipoController,
-    // deleteItemController,
-    // deleteItemValidadeController,
-    // deleteItemMarcaController,
-    // deleteItemTipoController
-};

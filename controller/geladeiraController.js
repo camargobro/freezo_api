@@ -2,10 +2,10 @@
 //     getItensMarca, getItemMarcaById, getItensTipo, getItemTipoById,
 //     postItem, postItemValidade, postItemMarca, postItemTipo, patchItem, patchItemValidade,
 //     patchItemMarca, patchItemTipo, deleteItem, deleteItemValidade, deleteItemMarca, deleteItemTipo } = require('../services/servicoGeladeira');
-const { postItens, getItens, putItem, deleteItem, getItemById, getItensMarca, getItensTipo, getItensValidade } = require('../services/servicoGeladeira');
+import { postItens, getItens, putItem, deleteItem, getItemById, getItensMarca, getItensTipo, getItensValidade } from '../services/servicoGeladeira.js';
 
 
-async function getItemByIdController(req, res) {
+export async function getItemByIdController(req, res) {
     try {
         const id = req.params.id;
         const item = await getItemById(id);
@@ -14,8 +14,8 @@ async function getItemByIdController(req, res) {
         res.status(500).send('Erro ao buscar item por ID')
     }
 }
-// }
-async function getItensValidadeController(req, res){
+
+export async function getItensValidadeController(req, res){
     try {
         const validade = req.params.validade;
         const item = await getItensValidade(validade);
@@ -30,7 +30,7 @@ async function getItensValidadeController(req, res){
     }
 }
 
-async function getItensMarcaController(req, res) {
+export async function getItensMarcaController(req, res) {
     try {
         const marca = req.params.marca;
         const item = await getItensMarca(marca);
@@ -45,7 +45,7 @@ async function getItensMarcaController(req, res) {
     }
 }
 
-async function getItensTipoController(req, res) {
+export async function getItensTipoController(req, res) {
     try {
         const tipo = req.params.tipo
         const item = await getItensTipo(tipo)
@@ -61,7 +61,7 @@ async function getItensTipoController(req, res) {
 
 }
 
-async function postItemController(req, res) {
+export async function postItemController(req, res) {
     try {
         let body = req.body;
         await postItens(body);
@@ -71,7 +71,7 @@ async function postItemController(req, res) {
     }
 }
 
-async function getItensController(req, res) {
+export async function getItensController(req, res) {
     try {
         const itens = await getItens();
         res.status(200).json(itens);
@@ -80,7 +80,7 @@ async function getItensController(req, res) {
         res.status(500).send('Erro ao buscar os itens');
     }
 }
-async function putItemController(req, res) {
+export async function putItemController(req, res) {
     try {
         const id = req.params.id;
         const dadosAtualizados = req.body
@@ -91,7 +91,7 @@ async function putItemController(req, res) {
     }
 }
 
-async function deleteItemController(req, res) {
+export async function deleteItemController(req, res) {
     try {
         const id = req.params.id;
         await deleteItem(id);
@@ -100,14 +100,3 @@ async function deleteItemController(req, res) {
         res.status(500).send('Erro ao deletar o item');
     }
 }
-
-module.exports = {
-    getItensController,
-    getItemByIdController,
-    getItensValidadeController,
-    getItensMarcaController,
-    getItensTipoController,
-    postItemController,
-    putItemController,
-    deleteItemController,
-};

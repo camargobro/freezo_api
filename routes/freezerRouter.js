@@ -1,9 +1,9 @@
-const express = require('express');
+import express from 'express';
 // const { getItens, getItemById, getItensValidade, getItemValidadeById, 
 // getItensMarca, getItemMarcaById, getItensTipo, getItemTipoById, 
 // postItem, postItemValidade, postItemMarca, postItemTipo, patchItem, patchItemValidade, 
 // patchItemMarca, patchItemTipo, deleteItem,deleteItemValidade, deleteItemMarca, deleteItemTipo } =  require('../controller/freezerController');
-const { getItensController } = require('../controller/freezerController');	
+import { getItensController } from'../controller/freezerController.js';	
 
 const router = express.Router();
 
@@ -48,4 +48,4 @@ router.get('/', getItensController);
 // router.delete('/tipo/:idTipo', deleteItemTipoController);
 
 
-module.exports = router;
+export default router;

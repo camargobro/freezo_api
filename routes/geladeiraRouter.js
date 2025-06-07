@@ -1,11 +1,11 @@
-const express = require('express');
+import express from 'express';
 // const { getItens, getItemById, getItensValidade, getItemValidadeById, 
 //     getItensMarca, getItemMarcaById, getItensTipo, getItemTipoById, 
 //     postItem, postItemValidade, postItemMarca, postItemTipo, patchItem, patchItemValidade, 
 //     patchItemMarca, patchItemTipo, deleteItem,deleteItemValidade, deleteItemMarca, deleteItemTipo } =  require('../controller/geladeiraController');
 
-const { getItensController, postItemController, putItemController,
-    deleteItemController, getItemByIdController, getItensMarcaController, getItensTipoController, getItensValidadeController } = require('../controller/geladeiraController');
+import { getItensController, postItemController, putItemController,
+    deleteItemController, getItemByIdController, getItensMarcaController, getItensTipoController, getItensValidadeController } from '../controller/geladeiraController.js';
 
 const router = express.Router();
 
@@ -26,4 +26,4 @@ router.patch('/:id', putItemController);
 router.delete('/:id', deleteItemController);
 
 
-module.exports = router;
+export default router;
