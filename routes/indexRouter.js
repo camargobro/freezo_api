@@ -1,9 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
+const geladeiraRouter = require('./geladeiraRouter');
 
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+router.use('/geladeira', geladeiraRouter);
+
+router.get('/', (req, res) => {
+    res.send('Rodando...');
 });
 
 module.exports = router;

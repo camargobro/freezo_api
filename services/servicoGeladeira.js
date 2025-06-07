@@ -1,5 +1,5 @@
 const { initializeApp } = require("firebase/app");
-const { getFirestore, doc, setDoc, collection } = require("firebase/firestore");
+const { getFirestore, doc, setDoc, collection, getDocs, getDoc } = require("firebase/firestore");
 const { firebaseConfig } = require('../services/firebaseCredenciais');
 
 const app = initializeApp(firebaseConfig);
@@ -33,6 +33,19 @@ const db = getFirestore(app);
  async function postItens(item){
         const docRef = doc(collection(db, "itens"));
         await setDoc(docRef, item);
+}
+
+async function getItens() {
+    const itensCol = collection(db, "itens");
+    const snapshot = await getDocs(itensCol);
+
+    const itens = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data(),
+    }));
+
+    console.log(itens);
+    return itens;
 }
 // function postItemValidade(){
 
@@ -70,7 +83,7 @@ const db = getFirestore(app);
 
 module.exports = {
     postItens,
-    // getItens,
+    getItens,
     // getItemById,
     // getItensValidade,
     // getItemValidadeById,

@@ -1,98 +1,108 @@
-// const { getItens, getItemById, getItensValidade, getItemValidadeById,
-//     getItensMarca, getItemMarcaById, getItensTipo, getItemTipoById,
-//     postItem, postItemValidade, postItemMarca, postItemTipo, patchItem, patchItemValidade,
-//     patchItemMarca, patchItemTipo, deleteItem, deleteItemValidade, deleteItemMarca, deleteItemTipo } = require('../services/servicoGeladeira');
-const { postItens } = require('../services/servicoGeladeira');
+    // const { getItens, getItemById, getItensValidade, getItemValidadeById,
+    //     getItensMarca, getItemMarcaById, getItensTipo, getItemTipoById,
+    //     postItem, postItemValidade, postItemMarca, postItemTipo, patchItem, patchItemValidade,
+    //     patchItemMarca, patchItemTipo, deleteItem, deleteItemValidade, deleteItemMarca, deleteItemTipo } = require('../services/servicoGeladeira');
+    const { postItens, getItens } = require('../services/servicoGeladeira');
 
 
 
-function getItensController(req, res) {
-   
-}
-
-
-// function getItemByIdController(){
-// }
-// function getItensValidadeController(){
-
-// }
-// function getItemValidadeByIdController(){
-
-// }
-// function getItensMarcaController(){
-
-// }
-// function getItemMarcaByIdController(){
-
-// }
-// function getItensTipoController(){
-
-// }
-// function getItemTipoByIdController(){
-
-// }
-function postItemController(req, res){
- try{
-        let body = req.body;
-        postItens(body);
-        res.send(201)
-    } catch (error) {
-        res.status(500).send('Erro ao criar um item');
+    function getItensController(req, res) {
+    
     }
-}
-// }
-// function postItemValidadeController(){
 
-// }
-// function postItemMarcaController(){
 
-// }
-// function postItemTipoController(){
+    // function getItemByIdController(){
+    // }
+    // function getItensValidadeController(){
 
-// }
-// function patchItemController(){
+    // }
+    // function getItemValidadeByIdController(){
 
-// }
-// function patchItemValidadeController(){
+    // }
+    // function getItensMarcaController(){
 
-// }
-// function patchItemMarcaController(){
+    // }
+    // function getItemMarcaByIdController(){
 
-// }
-// function patchItemTipoController(){
+    // }
+    // function getItensTipoController(){
 
-// }
-// function deleteItemController(){
+    // }
+    // function getItemTipoByIdController(){
 
-// }
-// function deleteItemValidadeController(){
+    // }
+    function postItemController(req, res){
+    try{
+            let body = req.body;
+            postItens(body);
+            res.send(201)
+        } catch (error) {
+            res.status(500).send('Erro ao criar um item');
+        }
+    }
 
-// }
-// function deleteItemMarcaController(){
+    async function getItensController(req, res) {
+        try {
+            const itens = await getItens();
+            res.status(200).json(itens);
+        } catch (error) {
+            console.error(error);
+            res.status(500).send('Erro ao buscar os itens');
+        }
+    }
+    // }
+    // function postItemValidadeController(){
 
-// }
-// function deleteItemTipoController(){
+    // }
+    // function postItemMarcaController(){
 
-// }
-module.exports = {
-    getItensController,
-    // getItemByIdController,
-    // getItensValidadeController,
-    // getItemValidadeByIdController,
-    // getItensMarcaController,
-    // getItemMarcaByIdController,
-    // getItensTipoController,
-    // getItemTipoByIdController,
-    postItemController,
-    // postItemValidadeController,
-    // postItemMarcaController,
-    // postItemTipoController,
-    // patchItemController,
-    // patchItemValidadeController,
-    // patchItemMarcaController,
-    // patchItemTipoController,
-    // deleteItemController,
-    // deleteItemValidadeController,
-    // deleteItemMarcaController,
-    // deleteItemTipoController
-};
+    // }
+    // function postItemTipoController(){
+
+    // }
+    // function patchItemController(){
+
+    // }
+    // function patchItemValidadeController(){
+
+    // }
+    // function patchItemMarcaController(){
+
+    // }
+    // function patchItemTipoController(){
+
+    // }
+    // function deleteItemController(){
+
+    // }
+    // function deleteItemValidadeController(){
+
+    // }
+    // function deleteItemMarcaController(){
+
+    // }
+    // function deleteItemTipoController(){
+
+    // }
+    module.exports = {
+        getItensController,
+        // getItemByIdController,
+        // getItensValidadeController,
+        // getItemValidadeByIdController,
+        // getItensMarcaController,
+        // getItemMarcaByIdController,
+        // getItensTipoController,
+        // getItemTipoByIdController,
+        postItemController,
+        // postItemValidadeController,
+        // postItemMarcaController,
+        // postItemTipoController,
+        // patchItemController,
+        // patchItemValidadeController,
+        // patchItemMarcaController,
+        // patchItemTipoController,
+        // deleteItemController,
+        // deleteItemValidadeController,
+        // deleteItemMarcaController,
+        // deleteItemTipoController
+    };
