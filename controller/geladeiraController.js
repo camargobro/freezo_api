@@ -9,21 +9,24 @@ export async function getItemByIdController(req, res) {
     try {
         const id = req.params.id;
         const item = await getItemById(id);
+
+        if (!item || item.length === 0) {
+            return res.status(404).send(`Item com ID '${id}' não encontrado.`);
+        }
         res.status(200).send(item);
     } catch {
         res.status(500).send('Erro ao buscar item por ID')
     }
 }
 
-export async function getItensValidadeController(req, res){
+export async function getItensValidadeController(req, res) {
     try {
         const validade = req.params.validade;
         const item = await getItensValidade(validade);
 
         if (!item || item.length === 0) {
-            return res.status(404).send(`Nenhum item encontrado para a marca: ${validade}`);
+            return res.status(404).send(`Nenhum item encontrado com a validade: ${validade}`);
         }
-
         res.status(200).send(item);
     } catch {
         res.status(500).send('Erro ao buscar item por validade')
@@ -38,7 +41,6 @@ export async function getItensMarcaController(req, res) {
         if (!item || item.length === 0) {
             return res.status(404).send(`Nenhum item encontrado para a marca: ${marca}`);
         }
-
         res.status(200).send(item);
     } catch {
         res.status(500).send('Erro ao buscar item por marca ')
@@ -54,7 +56,7 @@ export async function getItensTipoController(req, res) {
         if (!item || item.length === 0) {
             return res.status(404).send(`Nenhum item encontrado para a tipo: ${tipo}`);
         }
-    res.status(200).send(item)
+        res.status(200).send(item)
     } catch {
         res.status(500).send('Erro ao buscar item por tipo ')
     }
@@ -74,6 +76,10 @@ export async function postItemController(req, res) {
 export async function getItensController(req, res) {
     try {
         const itens = await getItens();
+
+        if (!itens || itens.length === 0) {
+            return res.status(404).send(`Nenhum item encontrado.`);
+        }
         res.status(200).json(itens);
     } catch (error) {
         console.error(error);
