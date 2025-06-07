@@ -1,5 +1,5 @@
 const { initializeApp } = require("firebase/app");
-const { getFirestore, doc, setDoc, collection, getDocs, getDoc, updateDoc, deleteDoc } = require("firebase/firestore");
+const { getFirestore, doc, setDoc, collection, getDocs, getDoc, updateDoc, deleteDoc, query, where } = require("firebase/firestore");
 const { firebaseConfig } = require('../services/firebaseCredenciais');
 
 const app = initializeApp(firebaseConfig);
@@ -9,30 +9,63 @@ const db = getFirestore(app);
 // export function getItens(){
 
 // }
-// function getItemById(){
+async function getItemById(id) {
+    const docRef = doc(db, "itens", id);
+    const docSnap = await getDoc(docRef);
 
-// }
-// function getItensValidade(){
+    if (docSnap.exists()) {
+        return {
+            id: docSnap.id,
+            ...docSnap.data()
+        };
+    } else {
+        return null;
+    }
 
-// }
-// function getItemValidadeById(){
+}
 
-// }
-// function getItensMarca(){
 
-// }
-// function getItemMarcaById(){
+async function getItensValidade(validade) {
+    const docRef = collection(db, "itens");
+    const q = query(docRef, where("validade", "==", validade));
+    const docSnap = await getDocs(q);
 
-// }
-// function getItensTipo(){
+    const itens = docSnap.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data()
+    }));
+    return itens;
+}
 
-// }
-// function getItemTipoById(){
+async function getItensMarca(marca) {
+    const docRef = collection(db, "itens");
+    const q = query(docRef, where("marca", "==", marca));
+    const docSnap = await getDocs(q);
 
-// }
- async function postItens(item){
-        const docRef = doc(collection(db, "itens"));
-        await setDoc(docRef, item);
+    const itens = docSnap.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data()
+    }));
+    return itens;
+
+}
+
+async function getItensTipo(tipo) {
+
+    const docRef = collection(db, "itens");
+    const q = query(docRef, where("tipo", "==", tipo));
+    const docSnap = await getDocs(q);
+
+    const itens = docSnap.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data()
+    }));
+    return itens;
+}
+
+async function postItens(item) {
+    const docRef = doc(collection(db, "itens"));
+    await setDoc(docRef, item);
 }
 
 async function getItens() {
@@ -47,61 +80,23 @@ async function getItens() {
     console.log(itens);
     return itens;
 }
-// function postItemValidade(){
 
-// }
-// function postItemMarca(){
-
-// }
-// function postItemTipo(){
-
-// }
- async function putItem(id, data){
-    const itemRef = doc(db, "itens", id);
-    await updateDoc(itemRef, data);
+async function putItem(id, data) {
+    const itemCol = doc(db, "itens", id);
+    await updateDoc(itemCol, data);
 }
-// function patchItemValidade(){
 
-// }
-// function patchItemMarca(){
-
-// }
-// function patchItemTipo(){
-
-// }
- async function deleteItem(id){
+async function deleteItem(id) {
     await deleteDoc(doc(db, "itens", id));
- }
-// }
-// function deleteItemValidade(){
-
-// }
-// function deleteItemMarca(){
-
-// }
-// function deleteItemTipo(){
-
-// }
+}
 
 module.exports = {
     postItens,
     getItens,
-    // getItemById,
-    // getItensValidade,
-    // getItemValidadeById,
-    // getItensMarca,
-    // getItemMarcaById,
-    // getItensTipo,
-    // getItemTipoById,
-    // postItemValidade,
-    // postItemMarca,
-    // postItemTipo,
-     putItem,
-    // patchItemValidade,
-    // patchItemMarca,
-    // patchItemTipo,
+    getItemById,
+    getItensValidade,
+    getItensMarca,
+    getItensTipo,
+    putItem,
     deleteItem,
-    // deleteItemValidade,
-    // deleteItemMarca,
-    // deleteItemTipo
 };

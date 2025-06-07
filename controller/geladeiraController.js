@@ -1,117 +1,113 @@
-    // const { getItens, getItemById, getItensValidade, getItemValidadeById,
-    //     getItensMarca, getItemMarcaById, getItensTipo, getItemTipoById,
-    //     postItem, postItemValidade, postItemMarca, postItemTipo, patchItem, patchItemValidade,
-    //     patchItemMarca, patchItemTipo, deleteItem, deleteItemValidade, deleteItemMarca, deleteItemTipo } = require('../services/servicoGeladeira');
-    const { postItens, getItens, putItem, deleteItem } = require('../services/servicoGeladeira');
+// const { getItens, getItemById, getItensValidade, getItemValidadeById,
+//     getItensMarca, getItemMarcaById, getItensTipo, getItemTipoById,
+//     postItem, postItemValidade, postItemMarca, postItemTipo, patchItem, patchItemValidade,
+//     patchItemMarca, patchItemTipo, deleteItem, deleteItemValidade, deleteItemMarca, deleteItemTipo } = require('../services/servicoGeladeira');
+const { postItens, getItens, putItem, deleteItem, getItemById, getItensMarca, getItensTipo, getItensValidade } = require('../services/servicoGeladeira');
 
 
-    // function getItemByIdController(){
-    // }
-    // function getItensValidadeController(){
+async function getItemByIdController(req, res) {
+    try {
+        const id = req.params.id;
+        const item = await getItemById(id);
+        res.status(200).send(item);
+    } catch {
+        res.status(500).send('Erro ao buscar item por ID')
+    }
+}
+// }
+async function getItensValidadeController(req, res){
+    try {
+        const validade = req.params.validade;
+        const item = await getItensValidade(validade);
 
-    // }
-    // function getItemValidadeByIdController(){
-
-    // }
-    // function getItensMarcaController(){
-
-    // }
-    // function getItemMarcaByIdController(){
-
-    // }
-    // function getItensTipoController(){
-
-    // }
-    // function getItemTipoByIdController(){
-
-    // }
-    async function postItemController(req, res){
-    try{
-           let body = req.body;
-            await postItens(body);
-            res.send(201)
-        } catch (error) {
-            res.status(500).send('Erro ao criar um item');
+        if (!item || item.length === 0) {
+            return res.status(404).send(`Nenhum item encontrado para a marca: ${validade}`);
         }
+
+        res.status(200).send(item);
+    } catch {
+        res.status(500).send('Erro ao buscar item por validade')
+    }
+}
+
+async function getItensMarcaController(req, res) {
+    try {
+        const marca = req.params.marca;
+        const item = await getItensMarca(marca);
+
+        if (!item || item.length === 0) {
+            return res.status(404).send(`Nenhum item encontrado para a marca: ${marca}`);
+        }
+
+        res.status(200).send(item);
+    } catch {
+        res.status(500).send('Erro ao buscar item por marca ')
+    }
+}
+
+async function getItensTipoController(req, res) {
+    try {
+        const tipo = req.params.tipo
+        const item = await getItensTipo(tipo)
+
+
+        if (!item || item.length === 0) {
+            return res.status(404).send(`Nenhum item encontrado para a tipo: ${tipo}`);
+        }
+    res.status(200).send(item)
+    } catch {
+        res.status(500).send('Erro ao buscar item por tipo ')
     }
 
-    async function getItensController(req, res) {
-        try {
-            const itens = await getItens();
-            res.status(200).json(itens);
-        } catch (error) {
-            console.error(error);
-            res.status(500).send('Erro ao buscar os itens');
-        }
+}
+
+async function postItemController(req, res) {
+    try {
+        let body = req.body;
+        await postItens(body);
+        res.send(201)
+    } catch (error) {
+        res.status(500).send('Erro ao criar um item');
     }
-    // }
-    // function postItemValidadeController(){
+}
 
-    // }
-    // function postItemMarcaController(){
-
-    // }
-    // function postItemTipoController(){
-
-    // }
-     async function putItemController(req, res){
-     try {
+async function getItensController(req, res) {
+    try {
+        const itens = await getItens();
+        res.status(200).json(itens);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Erro ao buscar os itens');
+    }
+}
+async function putItemController(req, res) {
+    try {
         const id = req.params.id;
         const dadosAtualizados = req.body
         await putItem(id, dadosAtualizados);
         res.status(200).send('Item atualizado com sucesso');
-     }catch (error) {
+    } catch (error) {
         res.status(500).send('Erro ao atualizar o item');
     }
 }
-    // }
-    // function patchItemValidadeController(){
 
-    // }
-    // function patchItemMarcaController(){
-
-    // }
-    // function patchItemTipoController(){
-
-    // }
-    async function deleteItemController(req, res){
-        try{
+async function deleteItemController(req, res) {
+    try {
         const id = req.params.id;
         await deleteItem(id);
         res.status(200).send('Item deletado com sucesso');
-     }catch (error) {
-         res.status(500).send('Erro ao deletar o item');
-     }
+    } catch (error) {
+        res.status(500).send('Erro ao deletar o item');
     }
-    // }
-    // function deleteItemValidadeController(){
+}
 
-    // }
-    // function deleteItemMarcaController(){
-
-    // }
-    // function deleteItemTipoController(){
-
-    // }
-    module.exports = {
-        getItensController,
-        // getItemByIdController,
-        // getItensValidadeController,
-        // getItemValidadeByIdController,
-        // getItensMarcaController,
-        // getItemMarcaByIdController,
-        // getItensTipoController,
-        // getItemTipoByIdController,
-        postItemController,
-        // postItemValidadeController,
-        // postItemMarcaController,
-        // postItemTipoController,
-        putItemController,
-        // patchItemValidadeController,
-        // patchItemMarcaController,
-        // patchItemTipoController,
-        deleteItemController,
-        // deleteItemValidadeController,
-        // deleteItemMarcaController,
-        // deleteItemTipoController
-    };
+module.exports = {
+    getItensController,
+    getItemByIdController,
+    getItensValidadeController,
+    getItensMarcaController,
+    getItensTipoController,
+    postItemController,
+    putItemController,
+    deleteItemController,
+};
