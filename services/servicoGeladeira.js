@@ -1,5 +1,5 @@
 const { initializeApp } = require("firebase/app");
-const { getFirestore, doc, setDoc, collection, getDocs, getDoc } = require("firebase/firestore");
+const { getFirestore, doc, setDoc, collection, getDocs, getDoc, updateDoc, deleteDoc } = require("firebase/firestore");
 const { firebaseConfig } = require('../services/firebaseCredenciais');
 
 const app = initializeApp(firebaseConfig);
@@ -56,9 +56,10 @@ async function getItens() {
 // function postItemTipo(){
 
 // }
-// function patchItem(){
-
-// }
+ async function putItem(id, data){
+    const itemRef = doc(db, "itens", id);
+    await updateDoc(itemRef, data);
+}
 // function patchItemValidade(){
 
 // }
@@ -68,8 +69,9 @@ async function getItens() {
 // function patchItemTipo(){
 
 // }
-// function deleteItem(){
-
+ async function deleteItem(id){
+    await deleteDoc(doc(db, "itens", id));
+ }
 // }
 // function deleteItemValidade(){
 
@@ -94,11 +96,11 @@ module.exports = {
     // postItemValidade,
     // postItemMarca,
     // postItemTipo,
-    // patchItem,
+     putItem,
     // patchItemValidade,
     // patchItemMarca,
     // patchItemTipo,
-    // deleteItem,
+    deleteItem,
     // deleteItemValidade,
     // deleteItemMarca,
     // deleteItemTipo

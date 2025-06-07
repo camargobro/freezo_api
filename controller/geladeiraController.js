@@ -2,13 +2,7 @@
     //     getItensMarca, getItemMarcaById, getItensTipo, getItemTipoById,
     //     postItem, postItemValidade, postItemMarca, postItemTipo, patchItem, patchItemValidade,
     //     patchItemMarca, patchItemTipo, deleteItem, deleteItemValidade, deleteItemMarca, deleteItemTipo } = require('../services/servicoGeladeira');
-    const { postItens, getItens } = require('../services/servicoGeladeira');
-
-
-
-    function getItensController(req, res) {
-    
-    }
+    const { postItens, getItens, putItem, deleteItem } = require('../services/servicoGeladeira');
 
 
     // function getItemByIdController(){
@@ -31,10 +25,10 @@
     // function getItemTipoByIdController(){
 
     // }
-    function postItemController(req, res){
+    async function postItemController(req, res){
     try{
-            let body = req.body;
-            postItens(body);
+           let body = req.body;
+            await postItens(body);
             res.send(201)
         } catch (error) {
             res.status(500).send('Erro ao criar um item');
@@ -60,8 +54,16 @@
     // function postItemTipoController(){
 
     // }
-    // function patchItemController(){
-
+     async function putItemController(req, res){
+     try {
+        const id = req.params.id;
+        const dadosAtualizados = req.body
+        await putItem(id, dadosAtualizados);
+        res.status(200).send('Item atualizado com sucesso');
+     }catch (error) {
+        res.status(500).send('Erro ao atualizar o item');
+    }
+}
     // }
     // function patchItemValidadeController(){
 
@@ -72,8 +74,15 @@
     // function patchItemTipoController(){
 
     // }
-    // function deleteItemController(){
-
+    async function deleteItemController(req, res){
+        try{
+        const id = req.params.id;
+        await deleteItem(id);
+        res.status(200).send('Item deletado com sucesso');
+     }catch (error) {
+         res.status(500).send('Erro ao deletar o item');
+     }
+    }
     // }
     // function deleteItemValidadeController(){
 
@@ -97,11 +106,11 @@
         // postItemValidadeController,
         // postItemMarcaController,
         // postItemTipoController,
-        // patchItemController,
+        putItemController,
         // patchItemValidadeController,
         // patchItemMarcaController,
         // patchItemTipoController,
-        // deleteItemController,
+        deleteItemController,
         // deleteItemValidadeController,
         // deleteItemMarcaController,
         // deleteItemTipoController

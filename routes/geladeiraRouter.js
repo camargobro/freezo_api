@@ -4,8 +4,8 @@ const express = require('express');
 //     postItem, postItemValidade, postItemMarca, postItemTipo, patchItem, patchItemValidade, 
 //     patchItemMarca, patchItemTipo, deleteItem,deleteItemValidade, deleteItemMarca, deleteItemTipo } =  require('../controller/geladeiraController');
 
-const { getItensController, postItemController } = require('../controller/geladeiraController'); 
-
+const { getItensController, postItemController, putItemController, deleteItemController } = require('../controller/geladeiraController'); 
+ 
 const router = express.Router();
 
 router.get('/', getItensController); 
@@ -32,7 +32,7 @@ router.post('/', postItemController);
 
 // router.post('/tipo', postItemTipoController);
 
-// router.patch('/:id', patchItemController);
+ router.patch('/:id', putItemController);
 
 // router.patch('/validade/:idValidade', patchItemValidadeController);
 
@@ -40,7 +40,7 @@ router.post('/', postItemController);
 
 // router.patch('/tipo/:idTipo', patchItemTipoController);
 
-// router.delete('/:id', deleteItemController);
+ router.delete('/:id', deleteItemController);
 
 // router.delete('/validade/:idValidade', deleteItemValidadeController);
 
