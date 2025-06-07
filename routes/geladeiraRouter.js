@@ -1,14 +1,14 @@
-const express = require('express');
-// const { getItens, getItemById, getItensValidade, getItemValidadeById, 
+import express from 'express';
+// import { getItens, getItemById, getItensValidade, getItemValidadeById, 
 //     getItensMarca, getItemMarcaById, getItensTipo, getItemTipoById, 
 //     postItem, postItemValidade, postItemMarca, postItemTipo, patchItem, patchItemValidade, 
-//     patchItemMarca, patchItemTipo, deleteItem,deleteItemValidade, deleteItemMarca, deleteItemTipo } =  require('../controller/geladeiraController');
+//     patchItemMarca, patchItemTipo, deleteItem, deleteItemValidade, deleteItemMarca, deleteItemTipo } from '../controller/geladeiraController.js';
 
-const { getItensController, postItemController, putItemController, deleteItemController } = require('../controller/geladeiraController'); 
- 
+import { getItensController, postItemController, putItemController, deleteItemController } from '../controller/geladeiraController.js';
+
 const router = express.Router();
 
-router.get('/', getItensController); 
+router.get('/', getItensController);
 
 // router.get('/:id', getItemByIdController);
 
@@ -32,7 +32,7 @@ router.post('/', postItemController);
 
 // router.post('/tipo', postItemTipoController);
 
- router.patch('/:id', putItemController);
+router.patch('/:id', putItemController);
 
 // router.patch('/validade/:idValidade', patchItemValidadeController);
 
@@ -40,7 +40,7 @@ router.post('/', postItemController);
 
 // router.patch('/tipo/:idTipo', patchItemTipoController);
 
- router.delete('/:id', deleteItemController);
+router.delete('/:id', deleteItemController);
 
 // router.delete('/validade/:idValidade', deleteItemValidadeController);
 
@@ -48,5 +48,4 @@ router.post('/', postItemController);
 
 // router.delete('/tipo/:idTipo', deleteItemTipoController);
 
-
-module.exports = router;
+export default router;

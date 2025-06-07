@@ -1,4 +1,4 @@
-function getItens(){
+export function getItens(){
 }
 // }
 // function getItemById(){
@@ -58,25 +58,3 @@ function getItens(){
 // function deleteItemTipo(){
 
 // }
-module.exports = {
-    getItens
-    // getItemById,
-    // getItensValidade,
-    // getItemValidadeById,
-    // getItensMarca,
-    // getItemMarcaById,
-    // getItensTipo,
-    // getItemTipoById,
-    // postItem,
-    // postItemValidade,
-    // postItemMarca,
-    // postItemTipo,
-    // patchItem,
-    // patchItemValidade,
-    // patchItemMarca,
-    // patchItemTipo,
-    // deleteItem,
-    // deleteItemValidade,
-    // deleteItemMarca,
-    // deleteItemTipo
-};

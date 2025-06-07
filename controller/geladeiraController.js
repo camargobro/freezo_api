@@ -2,7 +2,8 @@
     //     getItensMarca, getItemMarcaById, getItensTipo, getItemTipoById,
     //     postItem, postItemValidade, postItemMarca, postItemTipo, patchItem, patchItemValidade,
     //     patchItemMarca, patchItemTipo, deleteItem, deleteItemValidade, deleteItemMarca, deleteItemTipo } = require('../services/servicoGeladeira');
-    const { postItens, getItens, putItem, deleteItem } = require('../services/servicoGeladeira');
+import { postItens, getItens, putItem, deleteItem } from '../services/servicoGeladeira.js';
+    import regraDeNegocios from '../regraNeg/regraNeg.js';
 
 
     // function getItemByIdController(){
@@ -25,32 +26,23 @@
     // function getItemTipoByIdController(){
 
     // }
-    async function postItemController(req, res){
-    try{
-           let body = req.body;
+    export async function postItemController(req, res){
+        try {
+            let body = req.body;
+            if (!regraDeNegocios.nomeValid(body)) {
+                let error  = new Error('payload não é um item')
+                error.codigoStatus = 401;
+                throw error;
+            }
             await postItens(body);
-            //VALIDAÇÃO == ALTERAR OS CAMPOS DEPOIS
-            if (!body.nome || body.nome.trim() === '') {
-                body.nome = 'Não definido';
-            }
-            if (!body.marca || body.marca.trim() === '') {
-                body.marca = 'Não definido';
-            }
-            if (!body.tipo || body.tipo.trim() === '') {
-                body.tipo = 'Não definido';
-            }
-            if (!body.validade || body.validade.trim() === '') {
-                body.validade = 'Não definido';
-            }
-
-            postItens(body);
             res.sendStatus(201);
         } catch (error) {
+            console.error('Erro no POST /geladeira:', error);
             res.status(500).send('Erro ao criar um item');
         }
     }
 
-    async function getItensController(req, res) {
+    export async function getItensController(req, res) {
         try {
             const itens = await getItens();
             res.status(200).json(itens);
@@ -69,7 +61,7 @@
     // function postItemTipoController(){
 
     // }
-     async function putItemController(req, res){
+    export async function putItemController(req, res){
      try {
         const id = req.params.id;
         const dadosAtualizados = req.body
@@ -89,7 +81,7 @@
     // function patchItemTipoController(){
 
     // }
-    async function deleteItemController(req, res){
+export async function deleteItemController(req, res){
         try{
         const id = req.params.id;
         await deleteItem(id);
@@ -108,25 +100,3 @@
     // function deleteItemTipoController(){
 
     // }
-    module.exports = {
-        getItensController,
-        // getItemByIdController,
-        // getItensValidadeController,
-        // getItemValidadeByIdController,
-        // getItensMarcaController,
-        // getItemMarcaByIdController,
-        // getItensTipoController,
-        // getItemTipoByIdController,
-        postItemController,
-        // postItemValidadeController,
-        // postItemMarcaController,
-        // postItemTipoController,
-        putItemController,
-        // patchItemValidadeController,
-        // patchItemMarcaController,
-        // patchItemTipoController,
-        deleteItemController,
-        // deleteItemValidadeController,
-        // deleteItemMarcaController,
-        // deleteItemTipoController
-    };

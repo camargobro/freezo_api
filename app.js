@@ -1,15 +1,22 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+import createError from 'http-errors';
+import express from 'express';
+import path from 'path';
+import cookieParser from 'cookie-parser';
+import logger from 'morgan';
 
-var indexRouter = require('./routes/indexRouter');
-var usersRouter = require('./routes/usersRouter');
-var freezerRouter = require('./routes/freezerRouter'); 
-var geladeiraRouter = require('./routes/geladeiraRouter');
+import indexRouter from './routes/indexRouter.js';
+import usersRouter from './routes/usersRouter.js';
+import freezerRouter from './routes/freezerRouter.js';
+import geladeiraRouter from './routes/geladeiraRouter.js';
 
-var app = express();
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+// Para usar __dirname em ES Modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const app = express();
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -25,14 +32,13 @@ app.use('/users', usersRouter);
 app.use('/freezer', freezerRouter);
 app.use('/geladeira', geladeiraRouter);
 
-
-app.use(function(req, res, next) {
+// 404
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
-
-app.use(function(err, req, res, next) {
-
+// Erros
+app.use(function (err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
@@ -40,4 +46,5 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+// ✅ Export default para funcionar com import app from './app.js';
+export default app;

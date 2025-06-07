@@ -1,7 +1,7 @@
-const express = require('express');
-const router = express.Router();
+import express from 'express';
+import geladeiraRouter from './geladeiraRouter.js';  // lembre de colocar extensão .js aqui
 
-const geladeiraRouter = require('./geladeiraRouter');
+const router = express.Router();
 
 router.use('/geladeira', geladeiraRouter);
 
@@ -9,4 +9,4 @@ router.get('/', (req, res) => {
     res.send('Rodando...');
 });
 
-module.exports = router;
+export default router;

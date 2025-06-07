@@ -1,6 +1,6 @@
-const { initializeApp } = require("firebase/app");
-const { getFirestore, doc, setDoc, collection, getDocs, getDoc, updateDoc, deleteDoc } = require("firebase/firestore");
-const { firebaseConfig } = require('../services/firebaseCredenciais');
+import { initializeApp } from "firebase/app";
+import { getFirestore, doc, setDoc, collection, getDocs, getDoc, updateDoc, deleteDoc } from "firebase/firestore";
+import { firebaseConfig } from './firebaseCredenciais.js';
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -30,12 +30,12 @@ const db = getFirestore(app);
 // function getItemTipoById(){
 
 // }
- async function postItens(item){
+export async function postItens(item){
         const docRef = doc(collection(db, "itens"));
         await setDoc(docRef, item);
 }
 
-async function getItens() {
+export async function getItens() {
     const itensCol = collection(db, "itens");
     const snapshot = await getDocs(itensCol);
 
@@ -56,7 +56,7 @@ async function getItens() {
 // function postItemTipo(){
 
 // }
- async function putItem(id, data){
+export async function putItem(id, data){
     const itemRef = doc(db, "itens", id);
     await updateDoc(itemRef, data);
 }
@@ -69,7 +69,7 @@ async function getItens() {
 // function patchItemTipo(){
 
 // }
- async function deleteItem(id){
+export async function deleteItem(id){
     await deleteDoc(doc(db, "itens", id));
  }
 // }
@@ -82,26 +82,3 @@ async function getItens() {
 // function deleteItemTipo(){
 
 // }
-
-module.exports = {
-    postItens,
-    getItens,
-    // getItemById,
-    // getItensValidade,
-    // getItemValidadeById,
-    // getItensMarca,
-    // getItemMarcaById,
-    // getItensTipo,
-    // getItemTipoById,
-    // postItemValidade,
-    // postItemMarca,
-    // postItemTipo,
-     putItem,
-    // patchItemValidade,
-    // patchItemMarca,
-    // patchItemTipo,
-    deleteItem,
-    // deleteItemValidade,
-    // deleteItemMarca,
-    // deleteItemTipo
-};
