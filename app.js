@@ -5,7 +5,7 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
 import indexRouter from './routes/indexRouter.js';
-import usersRouter from './routes/usersRouter.js';
+import usersRouter from './routes/user.js';
 import freezerRouter from './routes/freezerRouter.js';
 import geladeiraRouter from './routes/geladeiraRouter.js';
 

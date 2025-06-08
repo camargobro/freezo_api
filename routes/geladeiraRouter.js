@@ -9,23 +9,25 @@ import { getItensController, postItemController, putItemController,
 
 import { camposPermitidos } from '../regraNeg/regraNeg.js';
 
+import { autenticarJWT } from '../middlewares/authMiddleware.js';
+
 const router = express.Router();
 
-router.get('/', getItensController);
+router.get('/', autenticarJWT, getItensController);
 
-router.get('/:id', getItemByIdController);
+router.get('/:id', autenticarJWT, getItemByIdController);
 
-router.get('/validade/:validade', getItensValidadeController);
+router.get('/validade/:validade', autenticarJWT, getItensValidadeController);
 
-router.get('/marca/:marca', getItensMarcaController);
+router.get('/marca/:marca', autenticarJWT, getItensMarcaController);
 
-router.get('/tipo/:tipo', getItensTipoController);
+router.get('/tipo/:tipo', autenticarJWT, getItensTipoController);
 
-router.post('/', camposPermitidos, postItemController);
+router.post('/',autenticarJWT, camposPermitidos, postItemController);
 
-router.patch('/:id', camposPermitidos, putItemController);
+router.patch('/:id',autenticarJWT, camposPermitidos, putItemController);
 
-router.delete('/:id', deleteItemController);
+router.delete('/:id', autenticarJWT, deleteItemController);
 
 
 export default router;

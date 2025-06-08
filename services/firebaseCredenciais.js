@@ -1,4 +1,6 @@
- const firebaseConfig = {
+import { createSecretKey } from 'crypto';
+
+export const firebaseConfig = {
     apiKey: "AIzaSyDwPi1u-zZ50FCh8gy5PF1ESlXkngeHOJA",
     authDomain: "freezoapi.firebaseapp.com",
     projectId: "freezoapi",
@@ -8,4 +10,5 @@
     measurementId: "G-7QHWJK3P46"
 };
 
-export default firebaseConfig;
+const secret = "segredo";
+export let JWTSecret = createSecretKey(secret, 'utf-8')

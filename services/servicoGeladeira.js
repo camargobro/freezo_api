@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, doc, setDoc, collection, getDocs, getDoc, updateDoc, deleteDoc, query, where } from "firebase/firestore";
-import  firebaseConfig  from '../services/firebaseCredenciais.js';
+import { firebaseConfig, JWTSecret } from '../services/firebaseCredenciais.js';
 import { normalizarTexto } from "../regraNeg/regraNeg.js";
 
 const app = initializeApp(firebaseConfig);
