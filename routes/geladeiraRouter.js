@@ -7,6 +7,8 @@ import express from 'express';
 import { getItensController, postItemController, putItemController,
     deleteItemController, getItemByIdController, getItensMarcaController, getItensTipoController, getItensValidadeController } from '../controller/geladeiraController.js';
 
+import { camposPermitidos } from '../regraNeg/regraNeg.js';
+
 const router = express.Router();
 
 router.get('/', getItensController);
@@ -19,9 +21,9 @@ router.get('/marca/:marca', getItensMarcaController);
 
 router.get('/tipo/:tipo', getItensTipoController);
 
-router.post('/', postItemController);
+router.post('/', camposPermitidos, postItemController);
 
-router.patch('/:id', putItemController);
+router.patch('/:id', camposPermitidos, putItemController);
 
 router.delete('/:id', deleteItemController);
 
