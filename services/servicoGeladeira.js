@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, doc, setDoc, collection, getDocs, getDoc, updateDoc, deleteDoc, query, where } from "firebase/firestore";
 import  firebaseConfig  from '../services/firebaseCredenciais.js';
+import { normalizarTexto } from "../regraNeg/regraNeg.js";
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -39,13 +40,17 @@ export async function getItensValidade(validade) {
 
 export async function getItensMarca(marca) {
     const docRef = collection(db, "itens");
-    const q = query(docRef, where("marca", "==", marca));
-    const docSnap = await getDocs(q);
+    const docSnap = await getDocs(docRef);
+
+    const normalizer = normalizarTexto(marca);
 
     const itens = docSnap.docs.map((doc) => ({
         id: doc.id,
         ...doc.data()
-    }));
+    }))
+    .filter((item) => 
+        item.marca && normalizarTexto(item.marca) === normalizer
+    );
     return itens;
 
 }
@@ -53,13 +58,17 @@ export async function getItensMarca(marca) {
 export async function getItensTipo(tipo) {
 
     const docRef = collection(db, "itens");
-    const q = query(docRef, where("tipo", "==", tipo));
-    const docSnap = await getDocs(q);
+    const docSnap = await getDocs(docRef);
+
+    const normalizer = normalizarTexto(tipo);
 
     const itens = docSnap.docs.map((doc) => ({
         id: doc.id,
         ...doc.data()
-    }));
+    }))
+    .filter((item) => 
+        item.tipo && normalizarTexto(item.tipo) === normalizer
+    );
     return itens;
 }
 
