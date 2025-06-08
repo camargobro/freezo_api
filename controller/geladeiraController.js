@@ -4,10 +4,11 @@
 //     patchItemMarca, patchItemTipo, deleteItem, deleteItemValidade, deleteItemMarca, deleteItemTipo } = require('../services/servicoGeladeira');
 import { postItens, getItens, putItem, deleteItem, getItemById, getItensMarca, getItensTipo, getItensValidade } from '../services/servicoGeladeira.js';
 import regraDeNegocios  from '../regraNeg/regraNeg.js';
+import { normalizarTexto } from '../regraNeg/regraNeg.js';
 
 export async function getItemByIdController(req, res) {
     try {
-        const id = req.params.id;
+        const id = normalizarTexto(req.params.id);
         const item = await getItemById(id);
 
         if (!item || item.length === 0) {
@@ -21,7 +22,7 @@ export async function getItemByIdController(req, res) {
 
 export async function getItensValidadeController(req, res) {
     try {
-        const validade = req.params.validade;
+        const validade = normalizarTexto(req.params.validade);
         const item = await getItensValidade(validade);
 
         if (!item || item.length === 0) {
@@ -35,21 +36,22 @@ export async function getItensValidadeController(req, res) {
 
 export async function getItensMarcaController(req, res) {
     try {
-        const marca = req.params.marca;
+        const marca = normalizarTexto(req.params.marca);
         const item = await getItensMarca(marca);
 
         if (!item || item.length === 0) {
             return res.status(404).send(`Nenhum item encontrado para a marca: ${marca}`);
         }
         res.status(200).send(item);
-    } catch {
+   } catch (error){
+        console.error("Erro em getItensMarcaController: ", error);
         res.status(500).send('Erro ao buscar item por marca ')
     }
 }
 
 export async function getItensTipoController(req, res) {
     try {
-        const tipo = req.params.tipo
+        const tipo = normalizarTexto(req.params.tipo);
         const item = await getItensTipo(tipo)
 
 
@@ -57,9 +59,11 @@ export async function getItensTipoController(req, res) {
             return res.status(404).send(`Nenhum item encontrado para a tipo: ${tipo}`);
         }
         res.status(200).send(item)
-    } catch {
+     } catch (error){
+        console.error("Erro em getItensTipoController: ", error);
         res.status(500).send('Erro ao buscar item por tipo ')
     }
+
 
 }
 
