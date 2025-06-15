@@ -1,4 +1,3 @@
-// middlewares/authMiddleware.js
 import { jwtVerify } from 'jose';
 import { JWTSecret } from '../services/firebaseCredenciais.js';
 

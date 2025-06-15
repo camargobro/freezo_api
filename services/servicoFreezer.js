@@ -1,60 +1,99 @@
-export function getItens(){
+import { initializeApp } from "firebase/app";
+import { getFirestore, doc, setDoc, collection, getDocs, getDoc, updateDoc, deleteDoc, query, where } from "firebase/firestore";
+import { firebaseConfig, JWTSecret } from '../services/firebaseCredenciais.js';
+import { normalizarTexto } from "../regraNeg/regraNeg.js";
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+export async function getItemById(id) {
+    const docRef = doc(db, "itensFreezer", id);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+        return {
+            id: docSnap.id,
+            ...docSnap.data()
+        };
+    } else {
+        return null;
+    }
+
 }
-// }
-// function getItemById(){
 
-// }
-// function getItensValidade(){
 
-// }
-// function getItemValidadeById(){
+export async function getItensValidade(validade) {
+    const docRef = collection(db, "itensFreezer");
+    const q = query(docRef, where("validade", "==", validade));
+    const docSnap = await getDocs(q);
 
-// }
-// function getItensMarca(){
+    const itens = docSnap.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data()
+    }));
+    return itens;
+}
 
-// }
-// function getItemMarcaById(){
+export async function getItensMarca(marca) {
+    const docRef = collection(db, "itensFreezer");
+    const docSnap = await getDocs(docRef);
 
-// }
-// function getItensTipo(){
+    const normalizer = normalizarTexto(marca);
 
-// }
-// function getItemTipoById(){
+    const itens = docSnap.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data()
+    }))
+    .filter((item) => 
+        item.marca && normalizarTexto(item.marca) === normalizer
+    );
+    return itens;
 
-// }
-// function postItem(){
+}
 
-// }
-// function postItemValidade(){
+export async function getItensTipo(tipo) {
 
-// }
-// function postItemMarca(){
+    const docRef = collection(db, "itensFreezer");
+    const docSnap = await getDocs(docRef);
 
-// }
-// function postItemTipo(){
+    const normalizer = normalizarTexto(tipo);
 
-// }
-// function patchItem(){
+    const itens = docSnap.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data()
+    }))
+    .filter((item) => 
+        item.tipo && normalizarTexto(item.tipo) === normalizer
+    );
+    return itens;
+}
 
-// }
-// function patchItemValidade(){
+export async function postItensFreezer(item) {
+    const docRef = doc(collection(db, "itensFreezer"));
+    await setDoc(docRef, item);
+}
 
-// }
-// function patchItemMarca(){
+export async function getItens() {
+    const itensCol = collection(db, "itensFreezer");
+    const snapshot = await getDocs(itensCol);
 
-// }
-// function patchItemTipo(){
+    const itens = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data(),
+    }));
 
-// }
-// function deleteItem(){
+    console.log(itens);
+    return itens;
+}
 
-// }
-// function deleteItemValidade(){
+export async function putItem(id, data) {
+    const itemCol = doc(db, "itensFreezer", id);
+    await updateDoc(itemCol, data);
+}
 
-// }
-// function deleteItemMarca(){
 
-// }
-// function deleteItemTipo(){
+      
+export async function deleteItem(id) {
+    await deleteDoc(doc(db, "itensFreezer", id));
+}
 
-// }

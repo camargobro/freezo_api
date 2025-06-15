@@ -6,10 +6,6 @@ import { normalizarTexto } from "../regraNeg/regraNeg.js";
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-
-// export function getItens(){
-
-// }
 export async function getItemById(id) {
     const docRef = doc(db, "itens", id);
     const docSnap = await getDoc(docRef);

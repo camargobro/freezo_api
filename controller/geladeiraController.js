@@ -1,17 +1,13 @@
-// const { getItens, getItemById, getItensValidade, getItemValidadeById,
-//     getItensMarca, getItemMarcaById, getItensTipo, getItemTipoById,
-//     postItem, postItemValidade, postItemMarca, postItemTipo, patchItem, patchItemValidade,
-//     patchItemMarca, patchItemTipo, deleteItem, deleteItemValidade, deleteItemMarca, deleteItemTipo } = require('../services/servicoGeladeira');
 import { postItens, getItens, putItem, deleteItem, getItemById, getItensMarca, getItensTipo, getItensValidade } from '../services/servicoGeladeira.js';
 import regraDeNegocios  from '../regraNeg/regraNeg.js';
 import { normalizarTexto } from '../regraNeg/regraNeg.js';
 
 export async function getItemByIdController(req, res) {
     try {
-        const id = normalizarTexto(req.params.id);
+        const id = (req.params.id);
         const item = await getItemById(id);
 
-        if (!item || item.length === 0) {
+        if (!item) {
             return res.status(404).send(`Item com ID '${id}' não encontrado.`);
         }
         res.status(200).send(item);
@@ -78,7 +74,7 @@ export async function postItemController(req, res) {
             
 
             await postItens(body);
-            res.sendStatus(201);
+            res.status(201).send('Item criado com sucesso!');
     } catch (error) {
         res.status(500).send('Erro ao criar um item');
     }

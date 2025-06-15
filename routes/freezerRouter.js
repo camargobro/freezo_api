@@ -1,51 +1,28 @@
 import express from 'express';
-// const { getItens, getItemById, getItensValidade, getItemValidadeById, 
-// getItensMarca, getItemMarcaById, getItensTipo, getItemTipoById, 
-// postItem, postItemValidade, postItemMarca, postItemTipo, patchItem, patchItemValidade, 
-// patchItemMarca, patchItemTipo, deleteItem,deleteItemValidade, deleteItemMarca, deleteItemTipo } =  require('../controller/freezerController');
-import { getItensController } from'../controller/freezerController.js';	
+import { getItensController, postItemFreezerController, putItemController,
+    deleteItemController, getItemByIdController, getItensMarcaController, getItensTipoController, getItensValidadeController } from '../controller/freezerController.js';
+
+import { camposPermitidos } from '../regraNeg/regraNeg.js';
+
+import { autenticarJWT } from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
 
-router.get('/', getItensController); 
+router.get('/', autenticarJWT, getItensController);
 
-// router.get('/:id', getItemByIdController);
+router.get('/:id', autenticarJWT, getItemByIdController);
 
-// router.get('/validade', getItensValidadeController);
+router.get('/validade/:validade', autenticarJWT, getItensValidadeController);
 
-// router.get('/validade/:idValidade', getItemValidadeByIdController);
+router.get('/marca/:marca', autenticarJWT, getItensMarcaController);
 
-// router.get('/marca', getItensMarcaController);
+router.get('/tipo/:tipo', autenticarJWT, getItensTipoController);
 
-// router.get('/marca/:idMarca', getItemMarcaByIdController);
+router.post('/',autenticarJWT, camposPermitidos, postItemFreezerController);
 
-// router.get('/tipo', getItensTipoController);
+router.patch('/:id',autenticarJWT, camposPermitidos, putItemController);
 
-// router.get('/tipo/:idTipo', getItemTipoByIdController);
-
-// router.post('/', postItemController);
-
-// router.post('/validade', postItemValidadeController);
-
-// router.post('/marca', postItemMarcaController);
-
-// router.post('/tipo', postItemTipoController);
-
-// router.patch('/:id', patchItemController);
-
-// router.patch('/validade/:idValidade', patchItemValidadeController);
-
-// router.patch('/marca/:idMarca', patchItemMarcaController);
-
-// router.patch('/tipo/:idTipo', patchItemTipoController);
-
-// router.delete('/:id', deleteItemController);
-
-// router.delete('/validade/:idValidade', deleteItemValidadeController);
-
-// router.delete('/marca/:idMarca', deleteItemMarcaController);
-
-// router.delete('/tipo/:idTipo', deleteItemTipoController);
+router.delete('/:id', autenticarJWT, deleteItemController);
 
 
 export default router;

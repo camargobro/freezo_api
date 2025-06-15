@@ -1,9 +1,4 @@
 import express from 'express';
-// const { getItens, getItemById, getItensValidade, getItemValidadeById, 
-//     getItensMarca, getItemMarcaById, getItensTipo, getItemTipoById, 
-//     postItem, postItemValidade, postItemMarca, postItemTipo, patchItem, patchItemValidade, 
-//     patchItemMarca, patchItemTipo, deleteItem,deleteItemValidade, deleteItemMarca, deleteItemTipo } =  require('../controller/geladeiraController');
-
 import { getItensController, postItemController, putItemController,
     deleteItemController, getItemByIdController, getItensMarcaController, getItensTipoController, getItensValidadeController } from '../controller/geladeiraController.js';
 

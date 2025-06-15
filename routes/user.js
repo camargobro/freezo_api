@@ -1,9 +1,15 @@
 import express from 'express';
 import authenticator from '../services/authenticator.js';
-import { JWTSecret } from '../services/firebaseCredenciais.js';
+import { JWTSecret, firebaseConfig } from '../services/firebaseCredenciais.js';
+import { collection, getDocs, getFirestore } from "firebase/firestore";
+import { initializeApp } from "firebase/app";
 import { SignJWT, jwtVerify } from 'jose';
 
 const router = express.Router();
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
 
 router.post('/register', (req, res) => {
     const { nome, email, senha } = req.body;
@@ -21,8 +27,27 @@ router.post('/register', (req, res) => {
     );
 });
 
-// Rota protegida que verifica o token
 router.get('/', async (req, res) => {
+try{
+      const itensCol = collection(db, "users");
+        const snapshot = await getDocs(itensCol);
+    
+        const users = snapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data(),
+            
+        }
+    ));
+        
+        res.status(200).send(users)
+}catch{
+    res.status(500).send('Erro!')
+}
+
+})
+
+// Rota protegida que verifica o token
+router.get('/:id', async (req, res) => {
     try {
         let token = req.get('Authorization');
 
