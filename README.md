@@ -9,8 +9,9 @@
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg" width = 60px/>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-original-wordmark.svg" width = 60px/>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-plain.svg" width = 60px />
-          
-          
+
+<h2>Autenticação</h2>
+<p>Feita com <strong>JWT</strong></p>
 </div>
           
           
